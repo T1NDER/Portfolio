@@ -1,0 +1,32 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    scroll-margin-top: 80px;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+  --color-text-main: #111111;
+  --color-text-secondary: #666666;
+  --color-text-third: #e5e5e5;
+  --color-text-muted: #999999;
+  --color-bg-background: #111111;
+  --color-bg-white: #ffffff;
+  --color-bg-alt: #fafafa;
+  --color-border: #f0f0f0;
+}
+
+html, body {
+    padding: 0;
+    width: 100%;
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+}
+
+section {
+    border-bottom: 2px solid #111113 !important;
+    border-top: none !important;
+}

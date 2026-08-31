@@ -1,0 +1,234 @@
+.footer {
+    background: #0a0a0b;
+    border-top: 1px solid #1f1f23;
+}
+
+.footer__container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.7s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer__main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    padding: 48px 0 40px;
+    border-bottom: 1px solid #1f1f23;
+}
+
+/* Brand */
+.footer__brand-name {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ededed;
+}
+
+.footer__brand-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c8ff00;
+    box-shadow: 0 0 12px #c8ff00;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.footer__brand-desc {
+    font-size: 13px;
+    color: #8a8a92;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 260px;
+}
+
+.footer__brand-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #55555c;
+    padding: 6px 12px;
+    background: #111113;
+    border: 1px solid #1f1f23;
+    border-radius: 100px;
+}
+
+.footer__live-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c8ff00;
+}
+
+/* Column */
+.footer__col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #55555c;
+    margin-bottom: 18px;
+}
+
+.footer__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__list a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #8a8a92;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.footer__list a:hover {
+    color: #ededed;
+    transform: translateX(3px);
+}
+
+.footer__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #55555c;
+    transition: color 0.2s ease;
+}
+
+.footer__list a:hover .footer__num {
+    color: #c8ff00;
+}
+
+/* Socials */
+.footer__socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer__social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #8a8a92;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.footer__social-link:hover {
+    color: #ededed;
+    background: #111113;
+    border-color: #1f1f23;
+}
+
+.footer__social-link svg {
+    color: #55555c;
+    transition: color 0.2s ease;
+}
+
+.footer__social-link:hover svg {
+    color: #c8ff00;
+}
+
+/* Bottom bar */
+.footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #55555c;
+}
+
+.footer__bottom-left,
+.footer__bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer__bottom a {
+    color: #8a8a92;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer__bottom a:hover {
+    color: #c8ff00;
+}
+
+.footer__heart {
+    color: #c8ff00;
+}
+
+.footer__arrow {
+    color: #c8ff00;
+}
+
+.footer__back-top {
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.footer__back-top:hover {
+    color: #c8ff00;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer__main {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+    }
+    
+    .footer__brand {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer__main {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    
+    .footer__brand {
+        grid-column: span 1;
+    }
+    
+    .footer__bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
