@@ -58,14 +58,16 @@ export default function AboutSection() {
                                 <div className="about-top">
                                     <div className="avatar">Д</div>
                                     <div className="about-info">
-                                        <div className="about-name">Дмитрий Сафонов</div>
+                                        <div className="about-name">Дмитрий</div>
                                         <div className="about-role">{heading}</div>
                                         <div className="about-location">Russia</div>
                                     </div>
                                 </div>
                                 <p className="about-bio">
                                     {paragraphs[0]} <br /><br />
-                                    {paragraphs[1]}
+                                    {paragraphs[1]} <br /><br />
+                                    {paragraphs[2]} <br /><br />
+                                    {paragraphs[3]}
                                 </p>
                             </div>
                             <div className="about-tags">

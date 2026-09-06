@@ -3,6 +3,7 @@ import "@componentsSection/ContactsSection/ContactsSection.css";
 
 export default function ContactsSection() {
     const [isLoading, setIsLoading] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -35,17 +36,9 @@ export default function ContactsSection() {
 
             if (response.ok) {
                 setFormData({ name: "", email: "", message: "" });
-                const btn = document.getElementById("submit-btn");
-                if (btn) {
-                    const originalHTML = btn.innerHTML;
-                    btn.innerHTML = "✓ Отправлено";
-                    btn.classList.add("success");
-                    
-                    setTimeout(() => {
-                        btn.innerHTML = originalHTML;
-                        btn.classList.remove("success");
-                    }, 2500);
-                }
+                setIsModalOpen(true);
+            } else {
+                throw new Error("Ошибка сервера Formspree");
             }
         } catch (error) {
             console.error("Ошибка отправки:", error);
@@ -55,29 +48,33 @@ export default function ContactsSection() {
         }
     };
 
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     return (
         <section className="contacts-section" id="contact">
-            <div className="contacts-container">
+            <div className="contacts-section__container">
                 {/* Header */}
-                <div className="contacts-header">
+                <div className="contacts-section__header">
                     <div>
-                        <div className="contacts-meta">
+                        <div className="contacts-section__meta">
                             <span className="status-dot"></span>
                             <span>GET IN TOUCH · 2025</span>
                         </div>
-                        <h2 className="contacts-title">
+                        <h2 className="contacts-section__title">
                             Let's<br />
                             <span className="accent">talk.</span>
                         </h2>
                     </div>
-                    <p className="contacts-description">
+                    <p className="contacts-section__description">
                         Есть идея, проект или просто хотите <span className="highlight">поприветствовать</span>? 
                         Я всегда открыт к интересным задачам и новым знакомствам.
                     </p>
                 </div>
 
                 {/* Bento Grid */}
-                <div className="contacts-bento">
+                <div className="contacts-section__bento">
                     {/* Main CTA Card */}
                     <div className="contacts-card contacts-card--large">
                         <div className="contacts-card__header">
@@ -92,6 +89,7 @@ export default function ContactsSection() {
                             </div>
                             <p className="cta-text">
                                 Расскажите о своём проекте — обсудим идею, сроки и как я могу помочь. 
+                                Первая консультация бесплатно.
                             </p>
                             <div className="cta-buttons">
                                 <a href="mailto:your@email.com" className="email-btn">
@@ -148,7 +146,12 @@ export default function ContactsSection() {
                             <span className="contacts-card__index">02</span>
                         </div>
                         <div className="socials-list">
-                            <a href="https://t.me/tinder0k" className="social-link" target="_blank" rel="noopener noreferrer">
+                            <a 
+                                href="https://t.me/tinder0k" 
+                                className="social-link" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <div className="social-icon">
                                     <svg viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
@@ -163,7 +166,12 @@ export default function ContactsSection() {
                                     <path d="M7 7h10v10"/>
                                 </svg>
                             </a>
-                            <a href="https://github.com/T1NDER" className="social-link" target="_blank" rel="noopener noreferrer">
+                            <a 
+                                href="https://github.com/T1NDER" 
+                                className="social-link" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
                                 <div className="social-icon">
                                     <svg viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
@@ -245,11 +253,32 @@ export default function ContactsSection() {
                 </div>
 
                 {/* Footer */}
-                <div className="contacts-footer">
-                    <a href="mailto:your@email.com" className="footer-email">your@email.com</a>
-                    <span>© 2025 · made with <span className="arrow">♥</span></span>
+                <div className="contacts-section__footer">
+                    <span>last updated · 2025</span>
+                    <span>let's connect <span className="arrow">→</span></span>
                 </div>
             </div>
+
+            {/* Модальное окно */}
+            {isModalOpen && (
+                <div className="modal-overlay" onClick={closeModal}>
+                    <div className="modal" onClick={(e) => e.stopPropagation()}>
+                        <div className="modal__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <h3 className="modal__title">Сообщение отправлено!</h3>
+                        <p className="modal__text">
+                            Спасибо за обращение. Я отвечу вам в ближайшее время.
+                        </p>
+                        <button className="modal__btn" onClick={closeModal}>
+                            Закрыть
+                        </button>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

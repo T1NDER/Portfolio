@@ -19,7 +19,8 @@
     pointer-events: none;
 }
 
-.contacts-container {
+/* ✅ ИСПРАВЛЕНО: contacts-container → contacts-section__container */
+.contacts-section__container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
@@ -28,7 +29,8 @@
 }
 
 /* Header */
-.contacts-header {
+/* ✅ ИСПРАВЛЕНО: contacts-header → contacts-section__header */
+.contacts-section__header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 48px;
@@ -36,7 +38,8 @@
     align-items: end;
 }
 
-.contacts-meta {
+/* ✅ ИСПРАВЛЕНО: contacts-meta → contacts-section__meta */
+.contacts-section__meta {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -60,7 +63,8 @@
     50% { opacity: 0.4; }
 }
 
-.contacts-title {
+/* ✅ ИСПРАВЛЕНО: contacts-title → contacts-section__title */
+.contacts-section__title {
     font-size: clamp(40px, 5.5vw, 64px);
     font-weight: 600;
     line-height: 1;
@@ -69,13 +73,14 @@
     margin: 0;
 }
 
-.contacts-title .accent {
+.contacts-section__title .accent {
     color: #c8ff00;
     font-style: italic;
     font-weight: 500;
 }
 
-.contacts-description {
+/* ✅ ИСПРАВЛЕНО: contacts-description → contacts-section__description */
+.contacts-section__description {
     font-size: 15px;
     line-height: 1.6;
     color: #8a8a92;
@@ -84,13 +89,14 @@
     margin: 0;
 }
 
-.contacts-description .highlight {
+.contacts-section__description .highlight {
     color: #ededed;
     font-weight: 500;
 }
 
 /* Bento Grid */
-.contacts-bento {
+/* ✅ ИСПРАВЛЕНО: contacts-bento → contacts-section__bento */
+.contacts-section__bento {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 12px;
@@ -581,7 +587,7 @@
 }
 
 /* Footer */
-.contacts-footer {
+.contacts-section__footer {
     margin-top: 40px;
     display: flex;
     justify-content: space-between;
@@ -593,7 +599,7 @@
     color: #55555c;
 }
 
-.contacts-footer .arrow {
+.contacts-section__footer .arrow {
     color: #c8ff00;
 }
 
@@ -609,7 +615,7 @@
 
 /* Responsive */
 @media (max-width: 900px) {
-    .contacts-bento {
+    .contacts-section__bento {
         grid-template-columns: repeat(2, 1fr);
     }
     
@@ -619,12 +625,12 @@
         min-height: 420px;
     }
     
-    .contacts-header {
+    .contacts-section__header {
         grid-template-columns: 1fr;
         gap: 24px;
     }
     
-    .contacts-description {
+    .contacts-section__description {
         justify-self: start;
     }
 }
@@ -634,7 +640,7 @@
         padding: 60px 0;
     }
     
-    .contacts-bento {
+    .contacts-section__bento {
         grid-template-columns: 1fr;
     }
     
@@ -653,4 +659,98 @@
     .contacts-card {
         padding: 22px;
     }
+}
+
+/* Модальное окно */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 11, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal {
+    background: #111113;
+    border: 1px solid #1f1f23;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    animation: modalIn 0.4s cubic-bezier(0.2, 0, 0.2, 1);
+    position: relative;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal__icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 24px;
+    background: rgba(200, 255, 0, 0.1);
+    border: 2px solid #c8ff00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c8ff00;
+}
+
+.modal__icon svg {
+    width: 36px;
+    height: 36px;
+}
+
+.modal__title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ededed;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+}
+
+.modal__text {
+    font-size: 14px;
+    color: #8a8a92;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.modal__btn {
+    padding: 12px 28px;
+    background: #c8ff00;
+    color: #0a0a0b;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(200, 255, 0, 0.3);
 }
